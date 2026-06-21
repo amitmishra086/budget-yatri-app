@@ -4,7 +4,7 @@
    ========================================================================== */
 const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://localhost:8000"
-  : "https://YOUR-DEPLOYED-BACKEND-URL.com"; // <-- update this after deploying backend
+  : : "https://budget-yatri-app.onrender.com"; // <-- update this after deploying backend
 
 const Api = {
   getToken() {

@@ -25,7 +25,7 @@ document.querySelectorAll(".nav-item[data-page]").forEach(btn => {
   btn.addEventListener("click", () => showPage(btn.dataset.page));
 });
 
-document.querySelectorAll(".home-action-card[data-page]").forEach(btn => {
+document.querySelectorAll(".quick-card[data-page]").forEach(btn => {
   btn.addEventListener("click", () => showPage(btn.dataset.page));
 });
 
@@ -402,12 +402,12 @@ async function loadTripSuggestions() {
   grid.innerHTML = TRIP_SUGGESTIONS.map((dest, i) => `
     <button class="suggestion-card" data-index="${i}">
       <div class="suggestion-card-img-wrap" id="sugg-img-${i}">
-        <div class="suggestion-card-img-placeholder">🏞️</div>
-        <span class="suggestion-card-budget-pill">from ${dest.budgetHint}</span>
+        <div class="suggestion-card-placeholder">🏞️</div>
       </div>
+      <div class="suggestion-card-overlay"></div>
       <div class="suggestion-card-body">
         <div class="suggestion-card-name">${escapeHtml(dest.name)}</div>
-        <div class="suggestion-card-desc">${escapeHtml(dest.tagline)}</div>
+        <span class="suggestion-card-budget">from ${dest.budgetHint}</span>
       </div>
     </button>
   `).join("");
@@ -439,17 +439,13 @@ async function fetchDestinationPhoto(dest, index) {
     const imgUrl = data?.thumbnail?.source || data?.originalimage?.source;
 
     if (imgUrl) {
-      // Request a slightly larger version for crisper cards where possible
       const betterUrl = imgUrl.replace(/\/\d+px-/, "/500px-");
       const img = new Image();
       img.onload = () => {
-        wrap.innerHTML = `<img src="${betterUrl}" alt="${escapeHtml(dest.name)}" loading="lazy">
-          <span class="suggestion-card-budget-pill">from ${dest.budgetHint}</span>`;
+        wrap.innerHTML = `<img src="${betterUrl}" alt="${escapeHtml(dest.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`;
       };
       img.onerror = () => {
-        // betterUrl failed (rare) - fall back to the original thumbnail size
-        wrap.innerHTML = `<img src="${imgUrl}" alt="${escapeHtml(dest.name)}" loading="lazy">
-          <span class="suggestion-card-budget-pill">from ${dest.budgetHint}</span>`;
+        wrap.innerHTML = `<img src="${imgUrl}" alt="${escapeHtml(dest.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`;
       };
       img.src = betterUrl;
     }

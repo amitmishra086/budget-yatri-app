@@ -3,87 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget Yatri — Ghoomne ka shauk, kam budget mein poora</title>
+<title>Budget Yatri — Explore India</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/landing.css">
-</head>
-<body class="landing-body">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050a14;
+  --bg2:#0a1628;
+  --accent:#f97316;
+  --accent2:#3b82f6;
+  --gold:#f59e0b;
+  --white:#ffffff;
+  --text:#e2e8f0;
+  --muted:#64748b;
+  --glass:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
-<nav class="landing-nav">
-  <div class="landing-nav-brand">✦ Budget Yatri</div>
-  <a href="app.html" class="landing-nav-cta">Log in / Sign up</a>
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,10,20,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-cta{background:var(--accent);color:white;padding:10px 24px;border-radius:100px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:#ea6c00;transform:scale(1.04);}
+
+/* HERO */
+#canvas-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;text-align:center;padding:120px 20px 80px;}
+.hero-eyebrow{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:600;}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:1;margin-bottom:24px;background:linear-gradient(135deg,#fff 0%,#cbd5e1 60%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.7;}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+.btn-hero-primary{background:var(--accent);color:white;padding:16px 36px;border-radius:100px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.25s;box-shadow:0 0 40px rgba(249,115,22,0.4);}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(249,115,22,0.6);}
+.btn-hero-secondary{background:var(--glass);color:var(--text);padding:16px 36px;border-radius:100px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid var(--border);backdrop-filter:blur(10px);transition:all 0.25s;}
+.btn-hero-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);}
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+
+/* DESTINATIONS */
+.section{padding:100px 60px;position:relative;z-index:1;}
+.section-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:600;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;margin-bottom:16px;color:var(--white);}
+.section-sub{color:var(--muted);margin-bottom:56px;font-size:1rem;}
+
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.dest-card{position:relative;border-radius:20px;overflow:hidden;height:320px;cursor:pointer;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);}
+.dest-card:hover{transform:translateY(-8px) scale(1.02);}
+.dest-card-img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.dest-card:hover .dest-card-img{transform:scale(1.1);}
+.dest-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,transparent 100%);}
+.dest-card-content{position:absolute;bottom:0;left:0;right:0;padding:24px;}
+.dest-card-name{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:white;margin-bottom:4px;}
+.dest-card-state{font-size:0.78rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+.dest-card-budget{display:inline-block;background:var(--accent);color:white;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:100px;}
+.dest-card-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,transparent 50%);opacity:0;transition:opacity 0.3s;}
+.dest-card:hover .dest-card-shine{opacity:1;}
+
+/* STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+.step-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;transition:all 0.3s;}
+.step-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,0.05),transparent);opacity:0;transition:opacity 0.3s;}
+.step-card:hover::before{opacity:1;}
+.step-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px);}
+.step-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:16px;}
+.step-card h3{font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:10px;}
+.step-card p{color:var(--muted);font-size:0.9rem;line-height:1.6;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
+.feature-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;transition:all 0.3s;}
+.feature-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-4px);background:rgba(59,130,246,0.05);}
+.feature-icon{font-size:2.2rem;margin-bottom:14px;}
+.feature-card h3{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:8px;}
+.feature-card p{font-size:0.82rem;color:var(--muted);line-height:1.5;}
+
+/* CTA */
+.cta-section{padding:120px 60px;text-align:center;position:relative;z-index:1;}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(249,115,22,0.12) 0%,transparent 70%);pointer-events:none;}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--white);margin-bottom:16px;}
+.cta-section p{color:var(--muted);margin-bottom:40px;font-size:1.05rem;}
+
+/* FOOTER */
+footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-text{color:var(--muted);font-size:0.82rem;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.7s cubic-bezier(0.34,1.2,0.64,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .section{padding:70px 20px;}
+  .cta-section{padding:80px 20px;}
+  footer{padding:30px 20px;flex-direction:column;gap:12px;text-align:center;}
+  .hero-stats{gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<div id="canvas-container"></div>
+
+<nav>
+  <div class="nav-brand">⚡ Budget Yatri</div>
+  <a href="app.html" class="nav-cta">Explore →</a>
 </nav>
 
-<header class="landing-hero">
-  <div class="landing-hero-mark">✦ AI-POWERED TRIP PLANNING</div>
-  <h1 class="landing-hero-title">Ghoomne ka shauk,<br><em>kam budget</em> mein poora.</h1>
-  <p class="landing-hero-sub">
-    Destination batao, AI tumhare liye din-wise plan banayega — kahan ghumna hai, kya khana hai, kahan rukna hai.
-    Budget tight hai? Expenses bhi track ho jayenge, automatically.
-  </p>
-  <div class="landing-hero-actions">
-    <a href="app.html" class="landing-btn-primary">Free mein shuru karo →</a>
-    <a href="#how-it-works" class="landing-btn-secondary">Kaise kaam karta hai?</a>
-  </div>
-  <div class="landing-hero-stats">
-    <div><div class="landing-stat-num">4+</div><div class="landing-stat-label">Destinations Mapped</div></div>
-    <div><div class="landing-stat-num">AI</div><div class="landing-stat-label">Trip Assistant</div></div>
-    <div><div class="landing-stat-num">₹0</div><div class="landing-stat-label">Overspend Goal</div></div>
+<header class="hero">
+  <div>
+    <div class="hero-eyebrow">✦ AI-Powered Travel Planning</div>
+    <h1 class="hero-title">Explore India.<br><em>Freely.</em></h1>
+    <p class="hero-sub">AI se plan karo, budget me ghomo, memories banao.</p>
+    <div class="hero-btns">
+      <a href="app.html" class="btn-hero-primary">Shuru Karo — Free Hai</a>
+      <a href="#destinations" class="btn-hero-secondary">Destinations Dekho</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">12+</div><div class="stat-label">Destinations</div></div>
+      <div><div class="stat-num">AI</div><div class="stat-label">Trip Planner</div></div>
+      <div><div class="stat-num">₹0</div><div class="stat-label">Extra Spend</div></div>
+    </div>
   </div>
 </header>
 
-<section class="landing-section" id="how-it-works">
-  <div class="landing-section-eyebrow">Kaise kaam karta hai</div>
-  <h2 class="landing-section-title">Teen step mein, agla trip ready</h2>
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+  <div class="reveal">
+    <div class="section-eyebrow">Popular Budget Trips</div>
+    <h2 class="section-title">Kahan jaana hai?</h2>
+    <p class="section-sub">Har ek destination ke liye day-wise AI plan — click karo aur plan shuru karo.</p>
+  </div>
+  <div class="dest-grid reveal" id="dest-grid"></div>
+</section>
 
-  <div class="landing-steps">
-    <div class="landing-step">
-      <div class="landing-step-num">01</div>
-      <h3>Destination aur budget batao</h3>
-      <p>Kahan jaana hai, kitne din, kitna budget — bas itna form bharo.</p>
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works" style="background:var(--bg2);">
+  <div class="reveal">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">3 steps. 1 perfect trip.</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-num">01</div>
+      <h3>Destination + Budget</h3>
+      <p>Kahan jaana, kitne din, kitna paisa — bas itna batao.</p>
     </div>
-    <div class="landing-step">
-      <div class="landing-step-num">02</div>
-      <h3>AI plan banata hai</h3>
-      <p>Must-visit places, local khana, budget hotels, aur din-wise itinerary turant mil jaata hai.</p>
+    <div class="step-card reveal">
+      <div class="step-num">02</div>
+      <h3>AI Plan Banata Hai</h3>
+      <p>Places, food, hotels, day-wise itinerary — sab kuch ek click mein.</p>
     </div>
-    <div class="landing-step">
-      <div class="landing-step-num">03</div>
-      <h3>Trip ke dauraan track karo</h3>
-      <p>Budget tight ho to expenses category-wise track karo — kabhi limit cross nahi hogi.</p>
+    <div class="step-card reveal">
+      <div class="step-num">03</div>
+      <h3>Track & Explore</h3>
+      <p>Budget tight ho to expenses track karo — overspend kabhi nahi.</p>
     </div>
   </div>
 </section>
 
-<section class="landing-section landing-section-alt">
-  <div class="landing-section-eyebrow">Sab kuch ek jagah</div>
-  <h2 class="landing-section-title">Jo bhi chahiye, trip planning ke liye</h2>
-
-  <div class="landing-features">
-    <div class="landing-feature">
-      <div class="landing-feature-icon">🗺️</div>
-      <h3>Trip Planner</h3>
-      <p>Form bharo, AI se din-wise itinerary turant pao — places, food, stay sab kuch.</p>
-    </div>
-    <div class="landing-feature">
-      <div class="landing-feature-icon">💬</div>
-      <h3>Ask AI</h3>
-      <p>Jo bhi sawal ho, AI assistant se direct poocho — jaise "Goa me 5000 me kya karu".</p>
-    </div>
-    <div class="landing-feature">
-      <div class="landing-feature-icon">🎯</div>
-      <h3>Budget Tracker</h3>
-      <p>Tight budget trips ke liye automatic expense tracking — transport, hotel, food sab category-wise.</p>
-    </div>
+<!-- FEATURES -->
+<section class="section">
+  <div class="reveal">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-title">Sab kuch, ek jagah.</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><div class="feature-icon">🗺️</div><h3>AI Trip Planner</h3><p>Smart day-wise itinerary, turant.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">💬</div><h3>AI Chat</h3><p>"Goa mein 5000 mein kya karu?" — poocho.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🎯</div><h3>Budget Tracker</h3><p>Expenses real-time track karo.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🏨</div><h3>Stay Suggestions</h3><p>Budget hotels aur hostels.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🍛</div><h3>Food Guide</h3><p>Local khana — sasta aur tasty.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">📋</div><h3>Trip History</h3><p>Saare plans ek jagah saved.</p></div>
   </div>
 </section>
 
-<footer class="landing-footer">
-  <div class="landing-footer-brand">✦ Budget Yatri</div>
-  <a href="app.html" class="landing-btn-primary">Apna pehla trip plan karo →</a>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2 class="reveal">Ready to explore?</h2>
+  <p class="reveal">Apna pehla trip plan karo — free hai, 30 second lagenge.</p>
+  <a href="app.html" class="btn-hero-primary reveal">Start Planning →</a>
+</section>
+
+<footer>
+  <div class="footer-brand">⚡ Budget Yatri</div>
+  <div class="footer-text">Made with ❤️ for Indian travellers</div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ============ 3D PARTICLE GLOBE ============
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 3;
+
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 0);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
+renderer.domElement.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+
+// Globe particles
+const geometry = new THREE.BufferGeometry();
+const count = 3000;
+const positions = new Float32Array(count * 3);
+const colors = new Float32Array(count * 3);
+
+for(let i = 0; i < count; i++){
+  const phi = Math.acos(-1 + (2*i)/count);
+  const theta = Math.sqrt(count * Math.PI) * phi;
+  const r = 1.4;
+  positions[i*3] = r * Math.sin(phi) * Math.cos(theta);
+  positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+  positions[i*3+2] = r * Math.cos(phi);
+
+  const t = Math.random();
+  colors[i*3] = 0.98 * t + 0.2 * (1-t);
+  colors[i*3+1] = 0.45 * t + 0.15 * (1-t);
+  colors[i*3+2] = 0.09 * t + 0.9 * (1-t);
+}
+
+geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+const material = new THREE.PointsMaterial({size:0.018, vertexColors:true, transparent:true, opacity:0.85});
+const globe = new THREE.Points(geometry, material);
+globe.position.set(3.5, 0, 0);
+scene.add(globe);
+
+// Floating particles background
+const bgGeo = new THREE.BufferGeometry();
+const bgCount = 500;
+const bgPos = new Float32Array(bgCount * 3);
+for(let i = 0; i < bgCount * 3; i++) bgPos[i] = (Math.random()-0.5)*20;
+bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
+const bgMat = new THREE.PointsMaterial({size:0.015, color:0xf97316, transparent:true, opacity:0.3});
+const bgParticles = new THREE.Points(bgGeo, bgMat);
+scene.add(bgParticles);
+
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 0.3;
+});
+
+function animate(){
+  requestAnimationFrame(animate);
+  globe.rotation.y += 0.003;
+  globe.rotation.x += 0.0005;
+  globe.rotation.y += mouseX * 0.02;
+  bgParticles.rotation.y += 0.0005;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ============ DESTINATIONS DATA ============
+const destinations = [
+  {name:"Goa", state:"Goa", budget:"₹1,500/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Baga_Beach%2C_Goa.jpg/640px-Baga_Beach%2C_Goa.jpg"},
+  {name:"Manali", state:"Himachal Pradesh", budget:"₹1,200/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Manali_-_panoramio.jpg/640px-Manali_-_panoramio.jpg"},
+  {name:"Jaipur", state:"Rajasthan", budget:"₹1,000/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Hawa_Mahal%2C_Jaipur%2C_Rajasthan.jpg/640px-Hawa_Mahal%2C_Jaipur%2C_Rajasthan.jpg"},
+  {name:"Rishikesh", state:"Uttarakhand", budget:"₹900/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Rishikesh_Ram_Jhula.jpg/640px-Rishikesh_Ram_Jhula.jpg"},
+  {name:"Hampi", state:"Karnataka", budget:"₹800/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Hampi_virupaksha.jpg/640px-Hampi_virupaksha.jpg"},
+  {name:"Pondicherry", state:"Tamil Nadu", budget:"₹1,100/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Pondicherry_Promenade.jpg/640px-Pondicherry_Promenade.jpg"},
+  {name:"Udaipur", state:"Rajasthan", budget:"₹1,300/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Udaipur_City_Palace.jpg/640px-Udaipur_City_Palace.jpg"},
+  {name:"Mcleodganj", state:"Himachal Pradesh", budget:"₹900/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Dharamsala_view.jpg/640px-Dharamsala_view.jpg"},
+  {name:"Varanasi", state:"Uttar Pradesh", budget:"₹700/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Varanasi_Burning_Ghat.jpg/640px-Varanasi_Burning_Ghat.jpg"},
+  {name:"Coorg", state:"Karnataka", budget:"₹1,400/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Madikeri_-_Coorg.jpg/640px-Madikeri_-_Coorg.jpg"},
+  {name:"Spiti Valley", state:"Himachal Pradesh", budget:"₹1,000/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Key_monastery_Spiti.jpg/640px-Key_monastery_Spiti.jpg"},
+  {name:"Munnar", state:"Kerala", budget:"₹1,200/day", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Munnar_tea.jpg/640px-Munnar_tea.jpg"},
+];
+
+function buildDestCards(){
+  const grid = document.getElementById('dest-grid');
+  destinations.forEach(d => {
+    const card = document.createElement('a');
+    card.href = 'app.html';
+    card.className = 'dest-card';
+    card.innerHTML = `
+      <img class="dest-card-img" src="${d.img}" alt="${d.name}" onerror="this.src='https://via.placeholder.com/400x320/0a1628/f97316?text=${d.name}'">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-shine"></div>
+      <div class="dest-card-content">
+        <div class="dest-card-name">${d.name}</div>
+        <div class="dest-card-state">${d.state}</div>
+        <span class="dest-card-budget">from ${d.budget}</span>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+buildDestCards();
+
+// ============ SCROLL REVEAL ============
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
+}, {threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

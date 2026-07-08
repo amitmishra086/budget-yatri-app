@@ -79,6 +79,8 @@ function enterApp() {
   const user = Api.getUser();
   document.getElementById("sidebar-username").textContent = user?.name || "Traveller";
   document.getElementById("sidebar-email").textContent = user?.email || "";
+  const avatarEl = document.getElementById("user-avatar");
+  if (avatarEl && user?.name) avatarEl.textContent = user.name.charAt(0).toUpperCase();
   authScreen.classList.add("hidden");
   appScreen.classList.remove("hidden");
   if (typeof initAppData === "function") initAppData();

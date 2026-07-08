@@ -3,87 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget Yatri — Plan trips, not stress</title>
+<title>Budget Yatri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app-dark.css">
 </head>
 <body>
 
 <!-- ============ AUTH SCREEN ============ -->
 <div id="auth-screen" class="auth-wrap">
-  <div class="auth-hero">
-    <div>
-      <div class="auth-hero-mark">✦ BUDGET YATRI</div>
+  <canvas id="auth-canvas"></canvas>
+
+  <div class="auth-left">
+    <div class="auth-brand">⚡ Budget Yatri</div>
+    <div class="auth-tagline-wrap">
+      <h1 class="auth-tagline">Explore.<br><em>Budget mein.</em></h1>
+      <p class="auth-tagline-sub">AI-powered trips, expense tracking, aur ek community — sab ek jagah.</p>
     </div>
-    <div>
-      <h1 class="auth-hero-headline">Ghoomne ka shauk,<br><em>kam budget</em> mein poora.</h1>
-      <p class="auth-hero-sub">AI se poochho kahan jaana hai, kya khana hai, kaha rukna hai — aur apna trip budget bhi track karo. Sab ek hi jagah.</p>
-    </div>
-    <div class="auth-hero-stats">
-      <div>
-        <div class="auth-stat-num">4+</div>
-        <div class="auth-stat-label">Destinations Mapped</div>
-      </div>
-      <div>
-        <div class="auth-stat-num">AI</div>
-        <div class="auth-stat-label">Trip Assistant</div>
-      </div>
-      <div>
-        <div class="auth-stat-num">₹0</div>
-        <div class="auth-stat-label">Overspend Goal</div>
-      </div>
+    <div class="auth-dest-pills">
+      <span class="dest-pill">📍 Goa</span>
+      <span class="dest-pill">🏔️ Manali</span>
+      <span class="dest-pill">🏰 Jaipur</span>
+      <span class="dest-pill">🌊 Rishikesh</span>
+      <span class="dest-pill">🛕 Hampi</span>
+      <span class="dest-pill">🌿 Coorg</span>
     </div>
   </div>
 
-  <div class="auth-form-side">
+  <div class="auth-right">
     <div class="auth-card">
-      <!-- LOGIN FORM -->
+      <!-- LOGIN -->
       <div id="login-form-wrap">
-        <div class="auth-card-eyebrow">Welcome back</div>
-        <h2>Log in</h2>
-        <p class="auth-card-sub">Apne trips aur chats yahin se continue karo.</p>
+        <div class="auth-card-title">Welcome back 👋</div>
         <div id="login-error" class="auth-error hidden"></div>
         <form id="login-form">
           <div class="field-group">
-            <label for="login-email">Email</label>
+            <label>Email</label>
             <input type="email" id="login-email" required placeholder="you@example.com">
           </div>
           <div class="field-group">
-            <label for="login-password">Password</label>
+            <label>Password</label>
             <input type="password" id="login-password" required placeholder="••••••••">
           </div>
           <button type="submit" class="btn-primary" id="login-btn">Log in</button>
         </form>
-        <div class="auth-switch">
-          Naye ho yahan? <button id="show-signup">Account banao</button>
-        </div>
+        <div class="auth-switch">New here? <button id="show-signup">Account banao</button></div>
       </div>
 
-      <!-- SIGNUP FORM -->
+      <!-- SIGNUP -->
       <div id="signup-form-wrap" class="hidden">
-        <div class="auth-card-eyebrow">Start planning</div>
-        <h2>Create account</h2>
-        <p class="auth-card-sub">Free hai. Bas 30 second lagenge.</p>
+        <div class="auth-card-title">Join for free ✨</div>
         <div id="signup-error" class="auth-error hidden"></div>
         <form id="signup-form">
           <div class="field-group">
-            <label for="signup-name">Naam</label>
-            <input type="text" id="signup-name" required placeholder="Aapka naam">
+            <label>Naam</label>
+            <input type="text" id="signup-name" required placeholder="Tumhara naam">
           </div>
           <div class="field-group">
-            <label for="signup-email">Email</label>
+            <label>Email</label>
             <input type="email" id="signup-email" required placeholder="you@example.com">
           </div>
           <div class="field-group">
-            <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" required minlength="6" placeholder="Kam se kam 6 characters">
+            <label>Password</label>
+            <input type="password" id="signup-password" required minlength="6" placeholder="6+ characters">
           </div>
-          <button type="submit" class="btn-primary" id="signup-btn">Account banao</button>
+          <button type="submit" class="btn-primary" id="signup-btn">Start exploring</button>
         </form>
-        <div class="auth-switch">
-          Already account hai? <button id="show-login">Log in karo</button>
-        </div>
+        <div class="auth-switch">Already joined? <button id="show-login">Log in</button></div>
       </div>
     </div>
   </div>
@@ -92,26 +78,20 @@
 <!-- ============ MAIN APP ============ -->
 <div id="app-screen" class="app-shell hidden">
   <aside class="sidebar">
-    <div class="sidebar-brand">✦ Budget Yatri</div>
-    <div class="sidebar-brand-tag">Travel smart, spend less</div>
-
-    <button class="nav-item active" data-page="home">
-      <span class="nav-icon">🏠</span> Home
-    </button>
-    <button class="nav-item" data-page="planner">
-      <span class="nav-icon">🗺️</span> Trip Planner
-    </button>
-    <button class="nav-item" data-page="trips">
-      <span class="nav-icon">📋</span> My Trips
-    </button>
-    <button class="nav-item" data-page="chat">
-      <span class="nav-icon">💬</span> Ask AI
-    </button>
-
+    <div class="sidebar-brand">⚡ Yatri</div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="home"><span>🏠</span> Home</button>
+      <button class="nav-item" data-page="planner"><span>🗺️</span> Plan Trip</button>
+      <button class="nav-item" data-page="trips"><span>📋</span> My Trips</button>
+      <button class="nav-item" data-page="chat"><span>💬</span> Ask AI</button>
+    </nav>
     <div class="sidebar-footer">
       <div class="sidebar-user">
-        <strong id="sidebar-username">—</strong>
-        <span id="sidebar-email"></span>
+        <div class="user-avatar" id="user-avatar">A</div>
+        <div>
+          <div class="user-name" id="sidebar-username">—</div>
+          <div class="user-email" id="sidebar-email"></div>
+        </div>
       </div>
       <button class="btn-logout" id="logout-btn">Log out</button>
     </div>
@@ -119,120 +99,99 @@
 
   <main class="main-content">
 
-    <!-- PAGE: HOME -->
+    <!-- HOME -->
     <section id="page-home" class="page">
-      <div class="page-header">
-        <div class="page-eyebrow">Welcome back</div>
-        <h1 class="page-title" id="home-greeting">Namaste! 👋</h1>
-        <p class="page-sub">Aaj kahan ka plan banayein?</p>
+      <div class="home-hero">
+        <div class="home-greeting" id="home-greeting">Namaste! 👋</div>
+        <h1 class="home-title">Kahan jaana hai aaj?</h1>
       </div>
-
-      <div class="home-quick-actions">
-        <button class="home-action-card" data-page="planner">
-          <div class="home-action-icon">🗺️</div>
-          <div>
-            <strong>Naya trip plan karo</strong>
-            <p>Destination aur budget batao, AI itinerary banayega</p>
-          </div>
+      <div class="quick-actions">
+        <button class="quick-card" data-page="planner">
+          <div class="quick-icon">🗺️</div>
+          <div class="quick-label">Naya Trip Plan</div>
+          <div class="quick-sub">AI se itinerary banao</div>
         </button>
-        <button class="home-action-card" data-page="chat">
-          <div class="home-action-icon">💬</div>
-          <div>
-            <strong>AI se poocho</strong>
-            <p>"Goa me 5000 me kya karu" jaisa kuch bhi poocho</p>
-          </div>
+        <button class="quick-card" data-page="chat">
+          <div class="quick-icon">💬</div>
+          <div class="quick-label">AI se Poocho</div>
+          <div class="quick-sub">Kuch bhi, kahi bhi</div>
         </button>
-        <button class="home-action-card" data-page="trips">
-          <div class="home-action-icon">📋</div>
-          <div>
-            <strong>Apne trips dekho</strong>
-            <p>Pehle banaye gaye plans aur budget tracking</p>
-          </div>
+        <button class="quick-card" data-page="trips">
+          <div class="quick-icon">📋</div>
+          <div class="quick-label">Mere Trips</div>
+          <div class="quick-sub">Pehle ke plans</div>
         </button>
       </div>
-
-      <div class="section-label" style="margin-top:36px;">✦ Low budget mein ghoomne layak jagahein</div>
-      <p class="page-sub" style="margin-top:-4px; margin-bottom:16px;">Kisi card pe click karo, planner form usi destination ke saath khul jayega.</p>
-      <div class="suggestion-grid" id="suggestion-grid">
-        <!-- Suggestion cards injected by JS (js/app.js) -->
-      </div>
+      <div class="section-label-dark">🔥 Popular Destinations</div>
+      <div class="suggestion-grid" id="suggestion-grid"></div>
     </section>
 
-    <!-- PAGE: PLANNER -->
+    <!-- PLANNER -->
     <section id="page-planner" class="page hidden">
       <div class="page-header">
-        <div class="page-eyebrow">New trip</div>
-        <h1 class="page-title">Plan your next trip</h1>
-        <p class="page-sub">Destination aur budget batao, AI tumhare liye plan bana dega.</p>
+        <div class="page-eyebrow">New Trip</div>
+        <h1 class="page-title">Trip Plan Karo</h1>
       </div>
-
-      <div class="card">
+      <div class="dark-card">
         <form id="planner-form" class="planner-grid">
           <div class="field-group full">
-            <label for="planner-destination">Kahan jaana hai?</label>
-            <input type="text" id="planner-destination" required placeholder="e.g. Goa, Manali, Jaipur, Rishikesh...">
+            <label>Kahan jaana hai?</label>
+            <input type="text" id="planner-destination" required placeholder="Goa, Manali, Jaipur...">
           </div>
           <div class="field-group">
-            <label for="planner-days">Kitne din?</label>
+            <label>Kitne din?</label>
             <input type="number" id="planner-days" required min="1" max="90" value="3">
           </div>
           <div class="field-group">
-            <label for="planner-travelers">Kitne log?</label>
+            <label>Kitne log?</label>
             <input type="number" id="planner-travelers" required min="1" value="1">
           </div>
           <div class="field-group full">
-            <label for="planner-budget">Total budget (₹)</label>
-            <input type="number" id="planner-budget" required min="1" placeholder="e.g. 6000">
+            <label>Total Budget (₹)</label>
+            <input type="number" id="planner-budget" required min="1" placeholder="6000">
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="planner-lowbudget">
-            <label for="planner-lowbudget">Budget tight hai — expenses track karna chahta hoon trip ke dauraan</label>
+            <label for="planner-lowbudget">💰 Budget tight hai — expenses track karna chahta hoon</label>
           </div>
-          <button type="submit" class="btn-primary" id="planner-submit" style="grid-column: 1 / -1;">
-            Generate trip plan
-          </button>
+          <button type="submit" class="btn-primary full" id="planner-submit">Generate Plan ✨</button>
         </form>
       </div>
-
       <div id="planner-result"></div>
     </section>
 
-    <!-- PAGE: MY TRIPS -->
+    <!-- MY TRIPS -->
     <section id="page-trips" class="page hidden">
       <div class="page-header">
-        <div class="page-eyebrow">Your journeys</div>
-        <h1 class="page-title">My Trips</h1>
-        <p class="page-sub">Pehle banaye gaye trip plans aur budget tracking.</p>
+        <div class="page-eyebrow">Your Journeys</div>
+        <h1 class="page-title">Mere Trips</h1>
       </div>
       <div id="trips-list"></div>
     </section>
 
-    <!-- PAGE: TRIP DETAIL (itinerary + budget tracker) -->
+    <!-- TRIP DETAIL -->
     <section id="page-trip-detail" class="page hidden">
-      <div class="page-header">
-        <button id="back-to-trips" class="page-eyebrow" style="background:none;">← Back to My Trips</button>
-      </div>
+      <button id="back-to-trips" class="back-btn">← Wapas</button>
       <div id="trip-detail-content"></div>
     </section>
 
-    <!-- PAGE: CHAT -->
+    <!-- CHAT -->
     <section id="page-chat" class="page hidden">
       <div class="page-header">
-        <div class="page-eyebrow">Travel assistant</div>
-        <h1 class="page-title">Ask AI</h1>
-        <p class="page-sub">Kuch bhi poocho — places, food, budget hotels, tips.</p>
+        <div class="page-eyebrow">AI Assistant</div>
+        <h1 class="page-title">Kuch bhi Poocho</h1>
       </div>
-
       <div class="chat-shell">
         <div class="chat-messages" id="chat-messages">
           <div class="chat-empty" id="chat-empty-state">
-            <div style="font-size:2.2rem; margin-bottom: 10px;">💬</div>
-            <strong>Trip planning me kuch bhi poocho!</strong>
-            <p style="margin-top:6px; font-size:0.88rem;">Jaise: "Goa me 5000 me kya karu" ya "Manali ke best budget hostels"</p>
+            <div class="chat-empty-icon">💬</div>
+            <strong>AI Travel Assistant</strong>
+            <p>Koi bhi travel sawal poocho!</p>
             <div class="chat-suggestions">
-              <button class="chat-suggestion-chip">Goa me 5000 me kya karu?</button>
-              <button class="chat-suggestion-chip">Manali ke best budget hostels</button>
-              <button class="chat-suggestion-chip">Jaipur famous khana kya hai?</button>
+              <button class="chip">Goa mein 5000 mein kya karu?</button>
+              <button class="chip">Manali budget hostels</button>
+              <button class="chip">Jaipur famous khana?</button>
+              <button class="chip">Rishikesh rafting tips</button>
             </div>
           </div>
         </div>
@@ -249,5 +208,38 @@
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/app.js"></script>
+
+<script>
+// Auth page canvas animation
+const canvas = document.getElementById('auth-canvas');
+if(canvas){
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  const particles = Array.from({length:80}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2+0.5,
+    vx: (Math.random()-0.5)*0.4,
+    vy: (Math.random()-0.5)*0.4,
+    o: Math.random()*0.5+0.1
+  }));
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>canvas.width) p.vx*=-1;
+      if(p.y<0||p.y>canvas.height) p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(249,115,22,${p.o})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+  window.addEventListener('resize',()=>{canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;});
+}
+</script>
 </body>
 </html>

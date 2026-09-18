@@ -9,14 +9,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#050a14;
-  --bg2:#0a1628;
-  --accent:#f97316;
-  --accent2:#3b82f6;
-  --gold:#f59e0b;
+  --bg:#0A1613;
+  --bg2:#102420;
+  --accent:#2F9E8F;
+  --accent2:#C98F4E;
+  --gold:#E8B657;
   --white:#ffffff;
-  --text:#e2e8f0;
-  --muted:#64748b;
+  --text:#DCE6E1;
+  --muted:#7E9690;
   --glass:rgba(255,255,255,0.05);
   --border:rgba(255,255,255,0.08);
 }
@@ -24,10 +24,10 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,10,20,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,22,19,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-brand{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .nav-cta{background:var(--accent);color:white;padding:10px 24px;border-radius:100px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:all 0.2s;}
-.nav-cta:hover{background:#ea6c00;transform:scale(1.04);}
+.nav-cta:hover{background:#217A6C;transform:scale(1.04);}
 
 /* HERO */
 #canvas-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
@@ -37,8 +37,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero-sub{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.7;}
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
-.btn-hero-primary{background:var(--accent);color:white;padding:16px 36px;border-radius:100px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.25s;box-shadow:0 0 40px rgba(249,115,22,0.4);}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(249,115,22,0.6);}
+.btn-hero-primary{background:var(--accent);color:white;padding:16px 36px;border-radius:100px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.25s;box-shadow:0 0 40px rgba(47,158,143,0.4);}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(47,158,143,0.6);}
 .btn-hero-secondary{background:var(--glass);color:var(--text);padding:16px 36px;border-radius:100px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid var(--border);backdrop-filter:blur(10px);transition:all 0.25s;}
 .btn-hero-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);}
 .hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
@@ -53,8 +53,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 
 .dest-cat-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
 .dest-cat-btn{background:var(--glass);border:1px solid var(--border);color:var(--text);padding:9px 18px;border-radius:100px;font-size:0.85rem;font-weight:600;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all 0.2s;}
-.dest-cat-btn:hover{border-color:rgba(249,115,22,0.4);color:var(--accent);}
-.dest-cat-btn.active{background:var(--accent);border-color:var(--accent);color:white;box-shadow:0 4px 16px rgba(249,115,22,0.3);}
+.dest-cat-btn:hover{border-color:rgba(47,158,143,0.4);color:var(--accent);}
+.dest-cat-btn.active{background:var(--accent);border-color:var(--accent);color:white;box-shadow:0 4px 16px rgba(47,158,143,0.3);}
 
 .dest-card-cat{display:inline-block;font-size:0.68rem;font-weight:700;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.12);backdrop-filter:blur(4px);padding:3px 9px;border-radius:100px;margin-bottom:6px;}
 
@@ -74,9 +74,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 /* STEPS */
 .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
 .step-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;transition:all 0.3s;}
-.step-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,0.05),transparent);opacity:0;transition:opacity 0.3s;}
+.step-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(47,158,143,0.05),transparent);opacity:0;transition:opacity 0.3s;}
 .step-card:hover::before{opacity:1;}
-.step-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-4px);}
+.step-card:hover{border-color:rgba(47,158,143,0.3);transform:translateY(-4px);}
 .step-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:16px;}
 .step-card h3{font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:10px;}
 .step-card p{color:var(--muted);font-size:0.9rem;line-height:1.6;}
@@ -84,14 +84,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 /* FEATURES */
 .features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
 .feature-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;transition:all 0.3s;}
-.feature-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-4px);background:rgba(59,130,246,0.05);}
+.feature-card:hover{border-color:rgba(201,143,78,0.4);transform:translateY(-4px);background:rgba(201,143,78,0.05);}
 .feature-icon{font-size:2.2rem;margin-bottom:14px;}
 .feature-card h3{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:8px;}
 .feature-card p{font-size:0.82rem;color:var(--muted);line-height:1.5;}
 
 /* CTA */
 .cta-section{padding:120px 60px;text-align:center;position:relative;z-index:1;}
-.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(249,115,22,0.12) 0%,transparent 70%);pointer-events:none;}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(47,158,143,0.12) 0%,transparent 70%);pointer-events:none;}
 .cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--white);margin-bottom:16px;}
 .cta-section p{color:var(--muted);margin-bottom:40px;font-size:1.05rem;}
 
@@ -126,10 +126,10 @@ footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify
   <div>
     <div class="hero-eyebrow">✦ AI-Powered Travel Planning</div>
     <h1 class="hero-title">Explore India.<br><em>Freely.</em></h1>
-    <p class="hero-sub">AI se plan karo, budget me ghomo, memories banao.</p>
+    <p class="hero-sub">Plan your journey with AI, travel within budget, and come home with stories worth telling.</p>
     <div class="hero-btns">
-      <a href="app.html" class="btn-hero-primary">Shuru Karo — Free Hai</a>
-      <a href="#destinations" class="btn-hero-secondary">Destinations Dekho</a>
+      <a href="app.html" class="btn-hero-primary">Start Planning — It's Free</a>
+      <a href="#destinations" class="btn-hero-secondary">Browse Destinations</a>
     </div>
     <div class="hero-stats">
       <div><div class="stat-num">16+</div><div class="stat-label">Destinations</div></div>
@@ -143,11 +143,11 @@ footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify
 <section class="section" id="destinations">
   <div class="reveal">
     <div class="section-eyebrow">Popular Budget Trips</div>
-    <h2 class="section-title">Kahan jaana hai?</h2>
-    <p class="section-sub">Har ek destination ke liye day-wise AI plan — click karo aur plan shuru karo.</p>
+    <h2 class="section-title">Where to next?</h2>
+    <p class="section-sub">A day-by-day AI itinerary for every destination — pick one and start planning.</p>
   </div>
   <div class="dest-cat-filters reveal" id="dest-cat-filters">
-    <button class="dest-cat-btn active" data-cat="all">Sab</button>
+    <button class="dest-cat-btn active" data-cat="all">All</button>
     <button class="dest-cat-btn" data-cat="beach">🏖️ Beach</button>
     <button class="dest-cat-btn" data-cat="mountain">🏔️ Mountain</button>
     <button class="dest-cat-btn" data-cat="heritage">🏰 Heritage</button>
@@ -168,17 +168,17 @@ footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify
     <div class="step-card reveal">
       <div class="step-num">01</div>
       <h3>Destination + Budget</h3>
-      <p>Kahan jaana, kitne din, kitna paisa — bas itna batao.</p>
+      <p>Tell us where you're headed, for how long, and what you'd like to spend.</p>
     </div>
     <div class="step-card reveal">
       <div class="step-num">02</div>
-      <h3>AI Plan Banata Hai</h3>
-      <p>Places, food, hotels, day-wise itinerary — sab kuch ek click mein.</p>
+      <h3>AI Builds Your Plan</h3>
+      <p>Places to see, food to try, places to stay, and a day-wise itinerary — in one click.</p>
     </div>
     <div class="step-card reveal">
       <div class="step-num">03</div>
       <h3>Track & Explore</h3>
-      <p>Budget tight ho to expenses track karo — overspend kabhi nahi.</p>
+      <p>Keep an eye on every expense as you go, and stay within budget without the guesswork.</p>
     </div>
   </div>
 </section>
@@ -187,15 +187,15 @@ footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify
 <section class="section">
   <div class="reveal">
     <div class="section-eyebrow">Features</div>
-    <h2 class="section-title">Sab kuch, ek jagah.</h2>
+    <h2 class="section-title">Everything in one place.</h2>
   </div>
   <div class="features-grid">
-    <div class="feature-card reveal"><div class="feature-icon">🗺️</div><h3>AI Trip Planner</h3><p>Smart day-wise itinerary, turant.</p></div>
-    <div class="feature-card reveal"><div class="feature-icon">💬</div><h3>AI Chat</h3><p>"Goa mein 5000 mein kya karu?" — poocho.</p></div>
-    <div class="feature-card reveal"><div class="feature-icon">🎯</div><h3>Budget Tracker</h3><p>Expenses real-time track karo.</p></div>
-    <div class="feature-card reveal"><div class="feature-icon">🏨</div><h3>Stay Suggestions</h3><p>Budget hotels aur hostels.</p></div>
-    <div class="feature-card reveal"><div class="feature-icon">🍛</div><h3>Food Guide</h3><p>Local khana — sasta aur tasty.</p></div>
-    <div class="feature-card reveal"><div class="feature-icon">📋</div><h3>Trip History</h3><p>Saare plans ek jagah saved.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🗺️</div><h3>AI Trip Planner</h3><p>A smart, day-wise itinerary, generated instantly.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">💬</div><h3>AI Chat</h3><p>Ask anything — "What can I do in Goa for ₹5,000?"</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🎯</div><h3>Budget Tracker</h3><p>Track every expense in real time.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🏨</div><h3>Stay Suggestions</h3><p>Budget-friendly hotels and hostels.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🍛</div><h3>Food Guide</h3><p>Local food that's affordable and delicious.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">📋</div><h3>Trip History</h3><p>Every plan you've made, saved in one place.</p></div>
   </div>
 </section>
 
@@ -203,13 +203,13 @@ footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify
 <section class="cta-section">
   <div class="cta-glow"></div>
   <h2 class="reveal">Ready to explore?</h2>
-  <p class="reveal">Apna pehla trip plan karo — free hai, 30 second lagenge.</p>
+  <p class="reveal">Plan your first trip in under a minute — completely free.</p>
   <a href="app.html" class="btn-hero-primary reveal">Start Planning →</a>
 </section>
 
 <footer>
   <div class="footer-brand">⚡ Budget Yatri</div>
-  <div class="footer-text">Made with ❤️ for Indian travellers</div>
+  <div class="footer-text">Made with care for Indian travellers</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -241,9 +241,9 @@ for(let i = 0; i < count; i++){
   positions[i*3+2] = r * Math.cos(phi);
 
   const t = Math.random();
-  colors[i*3] = 0.98 * t + 0.2 * (1-t);
-  colors[i*3+1] = 0.45 * t + 0.15 * (1-t);
-  colors[i*3+2] = 0.09 * t + 0.9 * (1-t);
+  colors[i*3] = 0.91 * t + 0.18 * (1-t);
+  colors[i*3+1] = 0.71 * t + 0.62 * (1-t);
+  colors[i*3+2] = 0.34 * t + 0.56 * (1-t);
 }
 
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -260,7 +260,7 @@ const bgCount = 500;
 const bgPos = new Float32Array(bgCount * 3);
 for(let i = 0; i < bgCount * 3; i++) bgPos[i] = (Math.random()-0.5)*20;
 bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
-const bgMat = new THREE.PointsMaterial({size:0.015, color:0xf97316, transparent:true, opacity:0.3});
+const bgMat = new THREE.PointsMaterial({size:0.015, color:0x2f9e8f, transparent:true, opacity:0.3});
 const bgParticles = new THREE.Points(bgGeo, bgMat);
 scene.add(bgParticles);
 
@@ -318,7 +318,7 @@ function buildDestCards(){
     card.href = 'app.html';
     card.className = 'dest-card';
     card.innerHTML = `
-      <img class="dest-card-img" src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x320/0a1628/f97316?text=${d.name}'">
+      <img class="dest-card-img" src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x320/102420/2f9e8f?text=${d.name}'">
       <div class="dest-card-overlay"></div>
       <div class="dest-card-shine"></div>
       <div class="dest-card-content">
